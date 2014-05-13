@@ -14,7 +14,6 @@ add_executable(${PROJECT_NAME}
 					pipeline.cpp
 					simple_color_technique.cpp
 					ogldev_util.cpp
-					ogldev_texture.cpp
 					technique.cpp
 					
 					callbacks.h
@@ -32,13 +31,18 @@ add_executable(${PROJECT_NAME}
 					ogldev_util.h
 					ogldev_types.h
 					
+					lighting.vs
+					picking.vs
+					simple_color.vs
+					lighting.fs
+					picking.fs
+					simple_color.fs
 					)
 
 find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(Assimp REQUIRED)
-find_package(ImageMagick COMPONENTS Magick++)
 
 message(STATUS "ImageMagick_Magick++_INCLUDE_DIR=${ImageMagick_Magick++_INCLUDE_DIR}")
 

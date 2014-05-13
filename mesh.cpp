@@ -71,9 +71,9 @@ Mesh::~Mesh()
 
 void Mesh::Clear()
 {
-    for (unsigned int i = 0 ; i < m_Textures.size() ; i++) {
-        SAFE_DELETE(m_Textures[i]);
-    }
+    //for (unsigned int i = 0 ; i < m_Textures.size() ; i++) {
+    //    SAFE_DELETE(m_Textures[i]);
+    //}
 }
 
 
@@ -100,7 +100,7 @@ bool Mesh::LoadMesh(const std::string& Filename)
 bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 {  
     m_Entries.resize(pScene->mNumMeshes);
-    m_Textures.resize(pScene->mNumMaterials);
+    //m_Textures.resize(pScene->mNumMaterials);
 
     // Initialize the meshes in the scene one by one
     for (unsigned int i = 0 ; i < m_Entries.size() ; i++) {
@@ -108,7 +108,7 @@ bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
         InitMesh(i, paiMesh);
     }
 
-    return InitMaterials(pScene, Filename);
+    return true;//InitMaterials(pScene, Filename);
 }
 
 void Mesh::InitMesh(unsigned int Index, const aiMesh* paiMesh)
@@ -165,7 +165,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
     for (unsigned int i = 0 ; i < pScene->mNumMaterials ; i++) {
         const aiMaterial* pMaterial = pScene->mMaterials[i];
 
-        m_Textures[i] = NULL;
+        //m_Textures[i] = NULL;
 
         if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
             aiString Path;
@@ -179,17 +179,17 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
                                
                 std::string FullPath = Dir + "/" + p;
                     
-                m_Textures[i] = new Texture(GL_TEXTURE_2D, FullPath.c_str());
+                //m_Textures[i] = new Texture(GL_TEXTURE_2D, FullPath.c_str());
 
-                if (!m_Textures[i]->Load()) {
-                    printf("Error loading texture '%s'\n", FullPath.c_str());
-                    delete m_Textures[i];
-                    m_Textures[i] = NULL;
-                    Ret = false;
-                }
-                else {
-                    printf("Loaded texture '%s'\n", FullPath.c_str());
-                }
+                //if (!m_Textures[i]->Load()) {
+                //    printf("Error loading texture '%s'\n", FullPath.c_str());
+                //    delete m_Textures[i];
+                //    m_Textures[i] = NULL;
+                //    Ret = false;
+                //}
+                //else {
+                //    printf("Loaded texture '%s'\n", FullPath.c_str());
+                //}
             }
         }
     }
@@ -214,9 +214,12 @@ GLExitIfError;
 GLExitIfError;
         const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
 GLExitIfError;
-        if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
-            m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
-        }
+  //      if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
+  //          m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
+		//}
+  //      } else {
+		//	glDisable(GL_TEXTURE_2D);//glBindTexture(GL_TEXTURE_2D, -1);
+		//}
 GLExitIfError;
         if (pRenderCallbacks) {
             pRenderCallbacks->DrawStartCB(i);

@@ -28,7 +28,7 @@
 
 #include "ogldev_util.h"
 #include "math_3d.h"
-#include "ogldev_texture.h"
+//#include "ogldev_texture.h"
 #include "render_callbacks.h"
 
 struct Vertex
@@ -84,7 +84,7 @@ private:
     };
 
     std::vector<MeshEntry> m_Entries;
-    std::vector<Texture*> m_Textures;
+    //std::vector<Texture*> m_Textures;
 };
 
 

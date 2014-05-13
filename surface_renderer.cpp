@@ -46,12 +46,12 @@ public:
     {
         m_pGameCamera = NULL;
         m_directionalLight.Color = Vector3f(1.0f, 1.0f, 1.0f);
-        m_directionalLight.AmbientIntensity = 1.0f;
-        m_directionalLight.DiffuseIntensity = 0.01f;        
+        m_directionalLight.AmbientIntensity = 0.5f;
+        m_directionalLight.DiffuseIntensity = 0.50f;        
         m_directionalLight.Direction = Vector3f(1.0f, -1.0, 0.0);
         m_leftMouseButton.IsPressed = false;
-        m_worldPos[0] = Vector3f(-10.0f, 0.0f, 5.0f);
-        m_worldPos[1] = Vector3f(10.0f, 0.0f, 5.0f);
+        m_worldPos[0] = Vector3f(0.0f, 0.0f, 0.0f);
+     //   m_worldPos[1] = Vector3f(10.0f, 0.0f, 5.0f);
         
         m_persProjInfo.FOV = 60.0f;
         m_persProjInfo.Height = WINDOW_HEIGHT;
@@ -68,8 +68,8 @@ public:
 
     bool Init()
     {
-        Vector3f Pos(0.0f, 5.0f, -22.0f);
-        Vector3f Target(0.0f, -0.2f, 1.0f);
+        Vector3f Pos(0.0f, 15.0f, -6.0f);
+        Vector3f Target(0.0f, 0.0f, 1.0f);
         Vector3f Up(0.0, 1.0f, 0.0f);
 
         m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT, Pos, Target, Up);
@@ -97,8 +97,8 @@ public:
         
         m_pMesh = new Mesh();
 
-        return m_pMesh->LoadMesh("../Content/spider.obj");
-		//return m_pMesh->LoadMesh("D:/Dropbox/streamsurface/plume.ply");
+        //return m_pMesh->LoadMesh("../Content/spider.obj");
+		return m_pMesh->LoadMesh("D:/Dropbox/streamsurface/isabel.ply");
     }
 
     void Run()
@@ -247,14 +247,14 @@ private:
         int x;
         int y;
     } m_leftMouseButton;
-    Vector3f m_worldPos[2];
+    Vector3f m_worldPos[1];
     PersProjInfo m_persProjInfo;	
 };
 
 
 int main(int argc, char** argv)
 {
-    Magick::InitializeMagick(*argv);
+    //Magick::InitializeMagick(*argv);
     GLUTBackendInit(argc, argv);
 
     if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 32, false, "surface_renderer")) {

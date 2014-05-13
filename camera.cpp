@@ -19,7 +19,7 @@
 
 #include "camera.h"
 
-const static float STEP_SCALE = 0.1f;
+const static float STEP_SCALE = 0.5f;
 const static int MARGIN = 10;
 
 Camera::Camera(int WindowWidth, int WindowHeight)
@@ -145,8 +145,8 @@ void Camera::OnMouse(int x, int y)
     m_mousePos.x = x;
     m_mousePos.y = y;
 
-    m_AngleH += (float)DeltaX / 20.0f;
-    m_AngleV += (float)DeltaY / 20.0f;
+    m_AngleH += (float)DeltaX / 10.0f;
+    m_AngleV += (float)DeltaY / 10.0f;
 
     if (DeltaX == 0) {
         if (x <= MARGIN) {
